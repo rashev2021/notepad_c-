@@ -30,4 +30,6 @@ void SortingRecordList(int number);
 void SortingHigh(int number, int next, bool temp);
 void SortingAvarage(int number, int next, bool temp);
 void SortingLow(int number, int next, bool temp);
+void DeleteRedactorList(int number);
+void RedactorList(int number);
 

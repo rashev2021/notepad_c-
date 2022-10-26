@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DeleteRedactorList.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NewList.cpp" />
     <ClCompile Include="NewRecordList.cpp" />
     <ClCompile Include="notepad_c++.cpp" />
     <ClCompile Include="ReadRecordList.cpp" />
+    <ClCompile Include="RedactorList.cpp" />
     <ClCompile Include="ReturnMenu.cpp" />
     <ClCompile Include="SortingRecordList.cpp" />
   </ItemGroup>

@@ -77,7 +77,7 @@ void Menu()
 			else
 			{
 				system("cls");
-				/*deleteRecordList(number);*/
+				DeleteRedactorList(number);
 			}
 
 			break;

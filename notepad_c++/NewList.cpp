@@ -13,7 +13,7 @@ using namespace std;
 void NewList(int number, Data1 document)
 {
 	char* temp;
-	string sav;
+	char sav;
 	string numberRecordList;
 
 	SYSTEMTIME time;

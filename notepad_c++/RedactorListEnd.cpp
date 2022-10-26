@@ -1,34 +1,29 @@
 #include <Windows.h>
-#include <iostream>
-#include <fstream>
-#include <synchapi.h>
-#include <string>
-#include <ctime>
-#include <sysinfoapi.h>
 #include "Default.h"
+#include <ctime>
+#include <synchapi.h>
+#include <sysinfoapi.h>
+#include <iostream>
+#include <string>
+#include <fstream>
 
 
 using namespace std;
 
-void NewList(int number, Data1 document)
+
+void RedactorListEnd(int number, Data1 document)
 {
+
 	char* temp;
-	char sav;
 	string numberRecordList;
+	char sav;
 
 	SYSTEMTIME time;
 	GetLocalTime(&time);
 
 	cout << " Дата и время создания записи: " << time.wDay << "." << time.wMonth << "." << time.wYear << " / " << time.wHour << ":"
-		<< time.wMinute << ":" << time.wSecond << endl;
+		 << time.wMinute << ":" << time.wSecond << endl;
 
-	// Запись номера записи в number.txt
-	ofstream filesNumber;
-	filesNumber.open(L"Number\\number.txt", ios::out);
-	filesNumber << number;
-	filesNumber.close();
-
-	// Преобразование int number в строку
 	numberRecordList = to_string(number);
 
 	//Замена пробелов в структуре на '_'
@@ -44,7 +39,6 @@ void NewList(int number, Data1 document)
 		strcpy_s(document.description + (strlen(document.description) - strlen(temp)), strlen(document.description), temp);
 	}
 
-	// Запись данных из структуры в файл txt
 	ofstream filesWriteListNumber;
 	filesWriteListNumber.open(numberRecordList + ".txt", ios::out);
 	filesWriteListNumber << endl;
@@ -52,24 +46,11 @@ void NewList(int number, Data1 document)
 	filesWriteListNumber << document.name << endl;
 	filesWriteListNumber << document.description << endl;
 	filesWriteListNumber << document.prioritet << endl;
-	filesWriteListNumber << time.wDay << "." << time.wMonth << "." << time.wYear << "_/_" << time.wHour << ":"
+	filesWriteListNumber << time.wDay << "." << time.wMonth << "." << time.wYear << " / " << time.wHour << ":"
 		                 << time.wMinute << ":" << time.wSecond << endl;
 	filesWriteListNumber << document.priority << endl;
 	filesWriteListNumber << endl;
 	filesWriteListNumber.close();
-
-	// Запись данных в bufferWrite из структуры
-	ofstream filesListNumber;
-	filesListNumber.open(L"Buffer\\bufferWrite.txt", ios::out);
-	filesListNumber << endl;
-	filesListNumber << " Запись номер: " << number << endl;
-	filesListNumber << " Название:     " << document.name << endl;
-	filesListNumber << " Описание:     " << document.description << endl;
-	filesListNumber << " Приоритет:    " << document.prioritet << endl;
-	filesListNumber << " Дата:         " << time.wDay << "." << time.wMonth << "." << time.wYear << " / " << time.wHour << ":"
-		                                 << time.wMinute << ":" << time.wSecond << endl;
-	filesListNumber << " ________________ " << endl;
-	filesListNumber.close();
 
 	cout << endl;
 	cout << " Нажмите любую клавишу чтобы сохранить запись: ";
@@ -84,32 +65,11 @@ void NewList(int number, Data1 document)
 	cout << " .";
 	Sleep(700);
 	cout << " ." << endl;
+
 	cout << " Запись успешно сохранена. " << endl << endl;
-	
 	Sleep(700);
 
 	system("cls");
-	PreviewRecordList();
+	Menu();
+
 }
-
-void PreviewRecordList()
-{
-	static char buff[1024][1024];
-	int i = 0;
-
-	cout << " Запись успешно создана: " << endl << endl;
-
-	ifstream files(L"Buffer\\bufferWrite.txt");
-
-	while (!files.eof())
-	{
-		files.getline(buff[i], sizeof(buff));
-		cout << buff[i] << endl;
-		++i;
-	}
-
-	files.close();
-
-	ReturnMenu();
-}
-

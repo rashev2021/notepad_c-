@@ -1,17 +1,16 @@
 #include <Windows.h>
-#include "Default.h"
-#include <ctime>
-#include <synchapi.h>
-#include <sysinfoapi.h>
 #include <iostream>
-#include <string>
 #include <fstream>
-
+#include <synchapi.h>
+#include <string>
+#include <ctime>
+#include <sysinfoapi.h>
+#include "Default.h"
 
 using namespace std;
 
 
-void RedactorListEnd(int number, Data1 document)
+void RedactorListEnd(int del, Data1 document)
 {
 
 	char* temp;
@@ -19,12 +18,12 @@ void RedactorListEnd(int number, Data1 document)
 	char sav;
 
 	SYSTEMTIME time;
-	GetLocalTime(&time);
+	GetLocalTime(&time);\
 
 	cout << " Дата и время создания записи: " << time.wDay << "." << time.wMonth << "." << time.wYear << " / " << time.wHour << ":"
 		 << time.wMinute << ":" << time.wSecond << endl;
 
-	numberRecordList = to_string(number);
+	numberRecordList = to_string(del);
 
 	//Замена пробелов в структуре на '_'
 	while (temp = strchr(document.name, ' '))
@@ -42,7 +41,7 @@ void RedactorListEnd(int number, Data1 document)
 	ofstream filesWriteListNumber;
 	filesWriteListNumber.open(numberRecordList + ".txt", ios::out);
 	filesWriteListNumber << endl;
-	filesWriteListNumber << number << endl;
+	filesWriteListNumber << del << endl;
 	filesWriteListNumber << document.name << endl;
 	filesWriteListNumber << document.description << endl;
 	filesWriteListNumber << document.prioritet << endl;

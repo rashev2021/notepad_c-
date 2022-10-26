@@ -50,14 +50,14 @@ void NewRecordList(int number)
 	case '2':
 		document.priority = 2;
 		// присваиваем стироку avarage к чаровой переменной
-		document.prioritet = const_cast<char*>(avarage.c_str());;
+		document.prioritet = const_cast<char*>(avarage.c_str());
 		cout << " Выбран приоритет - Средний." << endl;
 		NewList(number, document);
 		break;
 	case '3':
 		document.priority = 3;
 		// присваиваем стироку low к чаровой переменной
-		document.prioritet = const_cast<char*>(low.c_str());;
+		document.prioritet = const_cast<char*>(low.c_str());
 		cout << " Выбран приоритет - Низкий." << endl;
 		NewList(number, document);
 		break;
@@ -65,7 +65,7 @@ void NewRecordList(int number)
 		cout << " Введено неверное значение. Приоритет по умолчанию будет \"Средний\"." << endl;
 		document.priority = 2;
 		// присваиваем стироку avarage к чаровой переменной
-		document.prioritet = const_cast<char*>(avarage.c_str());;
+		document.prioritet = const_cast<char*>(avarage.c_str());
 		NewList(number, document);
 		break;
 	}

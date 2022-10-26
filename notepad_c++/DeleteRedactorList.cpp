@@ -77,11 +77,14 @@ void DeleteRedactorList(int number)
 				if (removeRedactor == '1')
 				{
 					system("cls");
-					RedactorList(number);
+					RedactorList(del);
 					break;
 				}
 				if (removeRedactor == '2')
 				{
+					string buffer;
+					string delt;
+
 					cout << " Выполняется удаление записи. Пожалуйста подождите ";
 
 					string bufDel = "Buffer\\bufferDelete.txt";
@@ -105,12 +108,17 @@ void DeleteRedactorList(int number)
 
 					number--;
 
+
 					// здесь  не происходит удаление определенного файла. Он остается в папке.
-					string c;
 
-					c = fileName + ".txt";
-					remove(c.c_str()) == 0;
+					for (int i = 0; i <= number; i++)
+					{
+						buffer = to_string(del);
+						delt = buffer + ".txt";
+						remove(delt.c_str()) == 0;
 
+					}
+				
 					ofstream filesNumber;
 					filesNumber.open(L"Number\\number.txt", ios::out);
 					filesNumber << number;

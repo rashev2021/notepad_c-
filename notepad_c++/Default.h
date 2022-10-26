@@ -31,6 +31,6 @@ void SortingHigh(int number, int next, bool temp);
 void SortingAvarage(int number, int next, bool temp);
 void SortingLow(int number, int next, bool temp);
 void DeleteRedactorList(int number);
-void RedactorList(int number);
+void RedactorList(int del);
 void RedactorListEnd(int number, Data1 document);
 

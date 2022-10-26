@@ -3,9 +3,8 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Default.h"
-
-
 
 using namespace std;
 
@@ -13,6 +12,9 @@ void NewRecordList(int number)
 {
 
 	char priorityes;
+	string high = "Высокий";
+	string avarage = "Средний";
+	string low = "Низкий";
 	Data1 document;
 
 	cout << " Добавить новую запись." << endl << endl;
@@ -24,7 +26,6 @@ void NewRecordList(int number)
 	gets_s(document.name, 150);
 
 	cout << " Введите описание записи: ";
-	cin.get();
 	gets_s(document.description, 150);
 
 	cout << " Выберите приоритет записи: " << endl << endl;
@@ -41,27 +42,31 @@ void NewRecordList(int number)
 
 	case '1':
 		document.priority = 1;
-		document.prioritet;
+		// присваиваем стироку high к чаровой переменной
+		document.prioritet = const_cast<char*>(high.c_str());
 		cout << " Выбран приоритет - Высокий." << endl;
-		NewList(number);
+		NewList(number, document);
 		break;
 	case '2':
 		document.priority = 2;
-		document.prioritet;
+		// присваиваем стироку avarage к чаровой переменной
+		document.prioritet = const_cast<char*>(avarage.c_str());;
 		cout << " Выбран приоритет - Средний." << endl;
-		NewList(number);
+		NewList(number, document);
 		break;
 	case '3':
 		document.priority = 3;
-		document.prioritet;
+		// присваиваем стироку low к чаровой переменной
+		document.prioritet = const_cast<char*>(low.c_str());;
 		cout << " Выбран приоритет - Низкий." << endl;
-		NewList(number);
+		NewList(number, document);
 		break;
 	default:
 		cout << " Введено неверное значение. Приоритет по умолчанию будет \"Средний\"." << endl;
 		document.priority = 2;
-		document.prioritet;
-		NewList(number);
+		// присваиваем стироку avarage к чаровой переменной
+		document.prioritet = const_cast<char*>(avarage.c_str());;
+		NewList(number, document);
 		break;
 	}
 

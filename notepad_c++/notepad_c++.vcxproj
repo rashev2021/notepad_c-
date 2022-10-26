@@ -131,6 +131,9 @@
     <ClCompile Include="NewList.cpp" />
     <ClCompile Include="NewRecordList.cpp" />
     <ClCompile Include="notepad_c++.cpp" />
+    <ClCompile Include="ReadRecordList.cpp" />
+    <ClCompile Include="ReturnMenu.cpp" />
+    <ClCompile Include="SortingRecordList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Default.h" />

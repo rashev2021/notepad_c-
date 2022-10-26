@@ -10,11 +10,11 @@
 
 using namespace std;
 
-void NewList(int number)
+void NewList(int number, Data1 document)
 {
+	char* temp;
 	string sav;
 	string numberRecordList;
-	Data1 document;
 
 	SYSTEMTIME time;
 	GetLocalTime(&time);
@@ -31,7 +31,18 @@ void NewList(int number)
 	// Преобразование int number в строку
 	numberRecordList = to_string(number);
 
-	/*cikl();*/
+	//Замена пробелов в структуре на '_'
+	while (temp = strchr(document.name, ' '))
+	{
+		*temp = '_';
+		strcpy_s(document.name + (strlen(document.name) - strlen(temp)), strlen(document.name), temp);
+	}
+
+	while (temp = strchr(document.description, ' '))
+	{
+		*temp = '_';
+		strcpy_s(document.description + (strlen(document.description) - strlen(temp)), strlen(document.description), temp);
+	}
 
 	// Запись данных из структуры в файл txt
 	ofstream filesWriteListNumber;
@@ -100,6 +111,6 @@ void PreviewRecordList()
 
 	files.close();
 
-	/*returnMenu();*/
+	ReturnMenu();
 }
 

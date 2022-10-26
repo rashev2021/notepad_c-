@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "Default.h"
+#include <string>
 
 using namespace std;
 
@@ -20,10 +21,9 @@ void Menu()
 	char enter;
 	int number = 0;
 	int numb = 0;
+	string w = "0";
 
 	// Создаем папки в деректории
-	/*wstring Doc = L"Document";
-	CreateDirectoryW(Doc.c_str(), NULL);*/
 	wstring Num = L"Number";
 	CreateDirectoryW(Num.c_str(), NULL);
 	wstring Buf = L"Buffer";
@@ -33,6 +33,12 @@ void Menu()
 	ifstream filesNumber(L"Number\\number.txt");
 	// Записываем данные файла в переменную number
 	filesNumber >> number;
+
+	////Создаем файл
+	//ofstream filesNumber;
+	//filesNumber.open(L"Buffer\\bufferRead.txt", ios::out);
+	//filesNumber >> w;
+	//filesNumber.close();
 
 	do
 	{
@@ -79,8 +85,7 @@ void Menu()
 		if (enter == '3')
 		{
 			system("cls");
-			/*readRecordList(number);*/
-			cout << " Метод не создан";
+			ReadRecordList(number);
 			break;
 		}
 		if (enter == '4')
@@ -93,55 +98,52 @@ void Menu()
 		if (enter == '5')
 		{
 			system("cls");
-			/*sortRecordList(number);*/
-			cout << " Метод не создан";
+			SortingRecordList(number);
 			break;
 		}
 		if (enter == '6')
 		{
-			//system("cls");
-			//cout << " Очистка списка." << endl << endl;
+			system("cls");
+			cout << " Очистка списка." << endl << endl;
 
-			//int count = 1;
-			//string buffer;
+			int count = 1;
+			string buffer;
 
-			string filename = "bufferWrite.txt";
-			//string filesNum = "number.txt";
-			//string del;
+			string filename = "Buffer\\bufferWrite.txt";
+			string filename1 = "Buffer\\bufferRead.txt";
+			string filesNum = "Number\\number.txt";
+			string del;
 
 
-			//// здесь происходит удаление всех созданных файлов. Работает
-			//for (int i = 0; i <= number; i++)
-			//{
-			//	buffer = to_string(count);
-			//	del = buffer + ".txt";
-			//	remove(del.c_str()) == 0;
-
-			//	count++;
-			//}
-
-			if (remove(filename.c_str()) == 0)
+			// здесь происходит удаление всех созданных файлов. Работает
+			for (int i = 0; i <= number; i++)
 			{
-				//	cout << " Идет очистка списка, пожалуйста подождите ";
-				//	Sleep(700);
-				//	cout << " .";
-				//	Sleep(700);
-				//	cout << " .";
-				//	Sleep(700);
-				//	cout << " .";
-				//	Sleep(700);
-				//	cout << " ." << endl;
+				buffer = to_string(count);
+				del = buffer + ".txt";
+				remove(del.c_str()) == 0;
 
-				//	ofstream filesNum;
-				//	filesNum.open("number.txt", ios::out);
-				//	filesNum << numb;
-				//	filesNum.close();
-
-				//	cout << " Список успешно очищен.";
-				cout << " Метод не создан";
+				count++;
 			}
 
+			if (remove(filename.c_str()) == 0 && remove(filename1.c_str()) == 0)
+			{
+					cout << " Идет очистка списка, пожалуйста подождите ";
+					Sleep(700);
+					cout << " .";
+					Sleep(700);
+					cout << " .";
+					Sleep(700);
+					cout << " .";
+					Sleep(700);
+					cout << " ." << endl;
 
+					ofstream filesNum;
+					filesNum.open(L"Number\\number.txt", ios::out);
+					filesNum << numb;
+					filesNum.close();
+
+					cout << " Список успешно очищен.";
+			}
 			else
 			{
 				cout << " Нет данных для удаления." << endl;
@@ -184,6 +186,3 @@ void Menu()
 	} while (true);
 }
 
-void NewRecordList()
-{
-}

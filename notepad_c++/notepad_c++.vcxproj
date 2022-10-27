@@ -136,6 +136,7 @@
     <ClCompile Include="RedactorList.cpp" />
     <ClCompile Include="RedactorListEnd.cpp" />
     <ClCompile Include="ReturnMenu.cpp" />
+    <ClCompile Include="SearchList.cpp" />
     <ClCompile Include="SortingRecordList.cpp" />
   </ItemGroup>
   <ItemGroup>

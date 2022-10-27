@@ -91,8 +91,7 @@ void Menu()
 		if (enter == '4')
 		{
 			system("cls");
-			/*searchRecordList();*/
-			cout << " Метод не создан";
+			SearchList(number);
 			break;
 		}
 		if (enter == '5')

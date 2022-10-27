@@ -83,13 +83,12 @@ void SortingRecordList(int number)
 				SortingLow(number, next, temp);
 				break;
 			default:
-				system("cls");
 				cout << endl << " Введены неверные значения. Попробуйте еще раз." << endl;
 				break;
 			}
 		} while (true);
 
-	}
+	} 
 
 }
 

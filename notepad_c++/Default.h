@@ -24,6 +24,20 @@ struct Data2
 	
 };
 
+struct Data3
+{
+	char* contBufS = new char[100];
+	char* nameBufS = new char[100];
+	char* descriptionBufS = new char[100];
+	char* priorityBufS = new char[100];
+	char* prioritetBufS = new char[100];
+	char* dateBufS = new char[100];
+	int fileNumPrS = 0;
+	int fileNumDayS = 0;
+	int fileNumMonthS = 0;
+
+};
+
 void Menu();
 void NewRecordList(int number);
 void NewList(int number, Data1 document);
@@ -41,9 +55,9 @@ void SortingLow(int number, int next, bool temp);
 void DeleteRedactorList(int number);
 void RedactorList(int del);
 void RedactorListEnd(int number, Data1 document);
-void SearchList(int number);
-void SearchListName();
-void SearchListPriority();
-void SearchListDescription();
-void SearchListData();
+void SearchList(int number, Data2 document2);
+void SearchListName(int number, int next, bool temp, Data2 document2);
+void SearchListPriority(int number, int next, bool temp);
+void SearchListDescription(int number, int next, bool temp);
+void SearchListData(int number, int next, bool temp);
 

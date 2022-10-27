@@ -12,7 +12,6 @@ int i = 0;
 
 Data2 document2;
 
-
 void SortingRecordList(int number)
 {
 

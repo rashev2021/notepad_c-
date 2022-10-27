@@ -23,6 +23,8 @@ void Menu()
 	int numb = 0;
 	string w = "0";
 
+	Data2 document2;
+
 	// Создаем папки в деректории
 	wstring Num = L"Number";
 	CreateDirectoryW(Num.c_str(), NULL);
@@ -91,7 +93,7 @@ void Menu()
 		if (enter == '4')
 		{
 			system("cls");
-			SearchList(number);
+			SearchList(number, document2);
 			break;
 		}
 		if (enter == '5')

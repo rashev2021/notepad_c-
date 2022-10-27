@@ -24,7 +24,7 @@ void ReadRecordList(int number)
 
 	if (remove(filename.c_str()) == 0)
 	{
-		cout << endl << " " << " Обновление списка ";
+		cout << endl << " Обновление списка ";
 
 		Sleep(700);
 		cout << " .";
@@ -164,9 +164,10 @@ void ListForTheDay(int number)
 
 	if (remove(filename.c_str()) == 0)
 	{
+		cout << " Отображение записей за день." << endl;
 		cout << " Введите число/день: ";
 		cin >> u;
-		cout << endl << " " << " Обновление списка ";
+		cout << endl << " Обновление списка ";
 
 		Sleep(700);
 		cout << " .";
@@ -225,6 +226,7 @@ void ListForTheDay(int number)
 	{
 		next = 0;
 
+		cout << " Отображение записей за день." << endl;
 		cout << " Отображен список за "  << u << "-е число" << endl;
 
 		ifstream files(L"Buffer\\bufferRead.txt");
@@ -242,6 +244,7 @@ void ListForTheDay(int number)
 
 	if (next == 1)
 	{
+		cout << " Отображение записей за день." << endl;
 		cout << " Нет записей за " << u << "-е число" << endl;
 		ReturnMenu();
 	}
@@ -250,6 +253,7 @@ void ListForTheDay(int number)
 
 void ListForTheWeek(int number)
 {
+	cout << " Отображение записей за неделю." << endl;
 	cout << " Нет в структуре недели " << endl;
 	ReturnMenu();
 
@@ -272,9 +276,10 @@ void ListForTheMonth(int number)
 
 	if (remove(filename.c_str()) == 0)
 	{
+		cout << " Отображение записей за месяц." << endl;
 		cout << " Введите число/месяц: ";
 		cin >> u;
-		cout << endl << " " << " Обновление списка ";
+		cout << endl << " Обновление списка ";
 
 		Sleep(700);
 		cout << " .";
@@ -334,6 +339,7 @@ void ListForTheMonth(int number)
 	{
 		next = 0;
 
+		cout << " Отображение записей за месяц." << endl;
 		cout << " Отображен список за " << u << "-ый месяц" << endl;
 
 		ifstream files(L"Buffer\\bufferRead.txt");
@@ -351,6 +357,7 @@ void ListForTheMonth(int number)
 
 	if (next == 1)
 	{
+		cout << " Отображение записей за месяц." << endl;
 		cout << " Нет записей за " << u << "-ый месяц" << endl;
 		ReturnMenu();
 	}

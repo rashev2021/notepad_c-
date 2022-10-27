@@ -12,54 +12,6 @@ using namespace std;
 
 void ReadRecordList(int number)
 {
-	SYSTEMTIME time;
-	GetLocalTime(&time);
-
-	cout << endl;
-	cout << " Отобразить весь список по порядку - нажмите [1]" << endl;
-	cout << " Отобразить список на день         - нажмите [2]" << endl;
-	cout << " Отобразить список на неделю       - нажмите [3]" << endl;
-	cout << " Отобразить список на месяц        - нажмите [4]" << endl;
-	cout << " Вернуться в меню                  - нажмите [5]" << endl;
-
-	char p;
-
-	do
-	{
-		cout << endl << " Выберите нужный пункт: ";
-		cin >> p;
-
-		switch (p)
-		{
-		case '1':
-			system("cls");
-			TheWholeList(number);
-			break;
-		case '2':
-			system("cls");
-			ListForTheDey(number, time);
-			break;
-		case '3':
-			system("cls");
-			ListForTheWeek(number, time);
-			break;
-		case '4':
-			system("cls");
-			ListForTheMonth(number, time);
-		case '5':
-			system("cls");			
-			Menu();
-		default:
-			cout << endl << " Введены неверные значения. Попробуйте еще раз." << endl;
-			break;
-		}
-
-	} while (true);
-	
-}
-
-void TheWholeList(int number)
-{
 
 	static char buff[1024][1024];
 	int i = 0;
@@ -147,17 +99,62 @@ void TheWholeList(int number)
 			++i;
 		}
 		files.close();
+
 	}
 
-	ReturnMenu();
+	MenuList(number);
+	
 }
 
-//Не работает
-void ListForTheDey(int number, SYSTEMTIME time)
+void MenuList(int number)
+{
+	cout << endl;
+	cout << " Отобразить список на день         - нажмите [1]" << endl;
+	cout << " Отобразить список на неделю       - нажмите [2]" << endl;
+	cout << " Отобразить список на месяц        - нажмите [3]" << endl;
+	cout << " Вернуться в меню                  - нажмите [4]" << endl;
+
+	char p;
+
+	do
+	{
+		cout << endl << " Выберите нужный пункт: ";
+
+		cin >> p;
+
+		switch (p)
+		{
+		case '1':
+			system("cls");
+			ListForTheDay(number);
+			break;
+		case '2':
+			system("cls");
+			ListForTheWeek(number);
+			break;
+		case '3':
+			system("cls");
+			ListForTheMonth(number);
+		case '4':
+			system("cls");
+			Menu();
+		default:
+			cout << endl << " Введены неверные значения. Попробуйте еще раз." << endl;
+			break;
+		}
+
+	} while (true);
+
+}
+
+void ListForTheDay(int number)
 {
 	static char buff[1024][1024];
-	int u;
+	int u = 0;
+	char f;
 	int i = 0;
+	bool temp = false;
+	int next = 0;
 	int count = 1;
 	string buffer;
 	Data2 document2;
@@ -192,71 +189,80 @@ void ListForTheDey(int number, SYSTEMTIME time)
 		filesWriteListNumber >> document2.nameBuf;
 		filesWriteListNumber >> document2.descriptionBuf;
 		filesWriteListNumber >> document2.prioritetBuf;
-		/*filesWriteListNumber >> document2.dateBuf;*/
-		filesWriteListNumber >> time.wDay;
+		filesWriteListNumber >> document2.dateBuf;
+		filesWriteListNumber >> document2.fileNumPr;
+		filesWriteListNumber >> document2.fileNumDay;
 
-		ofstream files;
 
-		// записываем даные из структуры Date2 в файл bufferRaed по порядку
-		files.open(L"Buffer\\bufferRead.txt", ios::app);
-		files << endl;
-		files << " Запись номер: " << document2.contBuf << endl;
-		files << " Название:     " << document2.nameBuf << endl;
-		files << " Описание:     " << document2.descriptionBuf << endl;
-		files << " Приоритет:    " << document2.prioritetBuf << endl;
-		/*files << " Дата:         " << document2.dateBuf << endl;*/
-		files << " Дата:         " << time.wDay << " число" << endl;
+		if (document2.fileNumDay == u)
+		{
+			ofstream files;
 
-		files << " ________________ " << endl;
-		files.close();
+			// записываем даные из структуры Date2 в файл bufferRaed по порядку
+			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files << endl;
+			files << " Запись номер: " << document2.contBuf << endl;
+			files << " Название:     " << document2.nameBuf << endl;
+			files << " Описание:     " << document2.descriptionBuf << endl;
+			files << " Приоритет:    " << document2.prioritetBuf << endl;
+			files << " Дата:         " << document2.dateBuf << endl;
+			files << " ________________ " << endl;
+			files.close();
 
-		count++;
+			count++;
+			temp = true;
+		}
+
+		else
+		{
+			count++;
+			next = 1;
+		}
 		
 	}
 
-	cout << " Отображен список на день: " << endl;
-
-	// считываем файл и выводим на экран
-	ifstream files(L"Buffer\\bufferRead.txt");
-
-	if (!files.is_open() == true)
+	if (temp == true)
 	{
-		cout << endl << " Вы не создали ни одной записи" << endl;
+		next = 0;
 
-		Sleep(1000);
-		cout << " Сейчас вы будете перенаправлены в меню";
+		cout << " Отображен список за "  << u << "-е число" << endl;
 
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " ." << endl;
-		system("cls");
-		Menu();
-	}
+		ifstream files(L"Buffer\\bufferRead.txt");
 
-	else
-	{
 		while (!files.eof())
 		{
 			files.getline(buff[i], sizeof(buff));
 			cout << buff[i] << endl;
 			++i;
 		}
+
 		files.close();
+		ReturnMenu();
 	}
 
-	ReturnMenu();
+	if (next == 1)
+	{
+		cout << " Нет записей за " << u << "-е число" << endl;
+		ReturnMenu();
+	}
+
 }
 
-// Не работает
-void ListForTheWeek(int number, SYSTEMTIME time)
+void ListForTheWeek(int number)
+{
+	cout << " Нет в структуре недели " << endl;
+	ReturnMenu();
+
+}
+
+void ListForTheMonth(int number)
 {
 	static char buff[1024][1024];
+	int u = 0;
+	char f;
 	int i = 0;
+	bool temp = false;
+	int next = 0;
 	int count = 1;
 	string buffer;
 	Data2 document2;
@@ -266,6 +272,8 @@ void ListForTheWeek(int number, SYSTEMTIME time)
 
 	if (remove(filename.c_str()) == 0)
 	{
+		cout << " Введите число/месяц: ";
+		cin >> u;
 		cout << endl << " " << " Обновление списка ";
 
 		Sleep(700);
@@ -289,66 +297,61 @@ void ListForTheWeek(int number, SYSTEMTIME time)
 		filesWriteListNumber >> document2.nameBuf;
 		filesWriteListNumber >> document2.descriptionBuf;
 		filesWriteListNumber >> document2.prioritetBuf;
-		/*filesWriteListNumber >> document2.dateBuf;*/
-		filesWriteListNumber >> time.wMonth;
+		filesWriteListNumber >> document2.dateBuf;
+		filesWriteListNumber >> document2.fileNumPr;
+		filesWriteListNumber >> document2.fileNumDay;
+		filesWriteListNumber >> document2.fileNumMonth;
 
-		ofstream files;
 
-		// записываем даные из структуры Date2 в файл bufferRaed по порядку
-		files.open(L"Buffer\\bufferRead.txt", ios::app);
-		files << endl;
-		files << " Запись номер: " << document2.contBuf << endl;
-		files << " Название:     " << document2.nameBuf << endl;
-		files << " Описание:     " << document2.descriptionBuf << endl;
-		files << " Приоритет:    " << document2.prioritetBuf << endl;
-		/*files << " Дата:         " << document2.dateBuf << endl;*/
-		files << " Дата:         " << time.wMonth << " число" << endl;
+		if (document2.fileNumMonth == u)
+		{
+			ofstream files;
 
-		files << " ________________ " << endl;
-		files.close();
+			// записываем даные из структуры Date2 в файл bufferRaed по порядку
+			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files << endl;
+			files << " Запись номер: " << document2.contBuf << endl;
+			files << " Название:     " << document2.nameBuf << endl;
+			files << " Описание:     " << document2.descriptionBuf << endl;
+			files << " Приоритет:    " << document2.prioritetBuf << endl;
+			files << " Дата:         " << document2.dateBuf << endl;
+			files << " ________________ " << endl;
+			files.close();
 
-		count++;
+			count++;
+			temp = true;
+		}
+
+		else
+		{
+			count++;
+			next = 1;
+		}
+
 	}
 
-	cout << " Отображен список на день: " << endl;
-
-	// считываем файл и выводим на экран
-	ifstream files(L"Buffer\\bufferRead.txt");
-
-	if (!files.is_open() == true)
+	if (temp == true)
 	{
-		cout << endl << " Вы не создали ни одной записи" << endl;
+		next = 0;
 
-		Sleep(1000);
-		cout << " Сейчас вы будете перенаправлены в меню";
+		cout << " Отображен список за " << u << "-ый месяц" << endl;
 
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " ." << endl;
-		system("cls");
-		Menu();
-	}
+		ifstream files(L"Buffer\\bufferRead.txt");
 
-	else
-	{
 		while (!files.eof())
 		{
 			files.getline(buff[i], sizeof(buff));
 			cout << buff[i] << endl;
 			++i;
 		}
+
 		files.close();
+		ReturnMenu();
 	}
 
-	ReturnMenu();
-}
-
-// Не работает
-void ListForTheMonth(int number, SYSTEMTIME time)
-{
+	if (next == 1)
+	{
+		cout << " Нет записей за " << u << "-ый месяц" << endl;
+		ReturnMenu();
+	}
 }

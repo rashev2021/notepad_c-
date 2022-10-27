@@ -22,6 +22,9 @@ void NewList(int number, Data1 document)
 	cout << " Дата и время создания записи: " << time.wDay << "." << time.wMonth << "." << time.wYear << " / " << time.wHour << ":"
 		<< time.wMinute << ":" << time.wSecond << endl;
 
+	document.day = time.wDay;
+	document.month = time.wMonth;
+
 	// Запись номера записи в number.txt
 	ofstream filesNumber;
 	filesNumber.open(L"Number\\number.txt", ios::out);
@@ -55,6 +58,8 @@ void NewList(int number, Data1 document)
 	filesWriteListNumber << time.wDay << "." << time.wMonth << "." << time.wYear << "_/_" << time.wHour << ":"
 		                 << time.wMinute << ":" << time.wSecond << endl;
 	filesWriteListNumber << document.priority << endl;
+	filesWriteListNumber << document.day << endl;
+	filesWriteListNumber << document.month << endl;
 	filesWriteListNumber << endl;
 	filesWriteListNumber.close();
 

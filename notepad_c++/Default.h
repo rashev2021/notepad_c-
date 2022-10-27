@@ -5,6 +5,8 @@ struct Data1
 	char* name = new char[150];
 	char* description = new char[150];
 	int priority = 0;
+	int day = 0;
+	int month = 0;
 	char* prioritet{};
 };
 
@@ -17,6 +19,8 @@ struct Data2
 	char* prioritetBuf = new char[100];
 	char* dateBuf = new char[100];
 	int fileNumPr = 0;
+	int fileNumDay = 0;
+	int fileNumMonth = 0;
 	
 };
 
@@ -26,10 +30,10 @@ void NewList(int number, Data1 document);
 void PreviewRecordList();
 void ReturnMenu();
 void ReadRecordList(int number);
-void TheWholeList(int number);
-void ListForTheDey(int number, SYSTEMTIME time);
-void ListForTheWeek(int number, SYSTEMTIME time);
-void ListForTheMonth(int number, SYSTEMTIME time);
+void MenuList(int number);
+void ListForTheDay(int number);
+void ListForTheWeek(int number);
+void ListForTheMonth(int number);
 void SortingRecordList(int number);
 void SortingHigh(int number, int next, bool temp);
 void SortingAvarage(int number, int next, bool temp);

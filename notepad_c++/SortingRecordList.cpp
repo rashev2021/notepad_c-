@@ -15,26 +15,9 @@ Data2 document2;
 void SortingRecordList(int number)
 {
 
-	string filename = "Buffer\\bufferReadSorting.txt";
-
 	char c;
 	int next = 0;
 	bool temp = false;
-
-	if (remove(filename.c_str()) == 0)
-	{
-		cout << endl << " " << " Обновление списка ";
-
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " .";
-		Sleep(700);
-		cout << " ." << endl;
-		system("cls");
-	}
 
 	if (number == 0)
 	{
@@ -53,6 +36,23 @@ void SortingRecordList(int number)
 		cout << " ." << endl;
 		system("cls");
 		Menu();
+	}
+
+	string filename = "Buffer\\bufferReadSorting.txt";
+
+	if (remove(filename.c_str()) == 0)
+	{
+		cout << endl << " " << " Обновление списка ";
+
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " ." << endl;
+		system("cls");
 	}
 
 	else

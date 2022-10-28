@@ -114,8 +114,7 @@ void Menu()
 			string filename1 = "Buffer\\bufferRead.txt";
 			string filename2 = "Buffer\\bufferReadName.txt";
 			string filename3 = "Buffer\\bufferReadSorting.txt";
-			string filename4 = "Buffer\\bufferReadDay.txt";
-			string filename5 = "Buffer\\bufferReadMonth.txt";
+			string filename4 = "Buffer\\bufferReadDelete.txt";
 			string filesNum = "Number\\number.txt";
 			string del;
 
@@ -131,8 +130,8 @@ void Menu()
 			}
 
 			if (remove(filename.c_str()) == 0 && remove(filename1.c_str()) == 0 
-				&& remove(filename2.c_str()) == 0 && remove(filename3.c_str()) == 0 
-				&& remove(filename4.c_str()) == 0 && remove(filename5.c_str()) == 0)
+				&& remove(filename2.c_str()) == 0 && remove(filename3.c_str()) == 0  
+				&& remove(filename4.c_str()) == 0)
 			{
 					cout << " Идет очистка списка, пожалуйста подождите ";
 					Sleep(700);

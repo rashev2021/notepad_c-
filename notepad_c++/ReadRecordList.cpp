@@ -159,8 +159,10 @@ void ListForTheDay(int number)
 	string buffer;
 	Data2 document2;
 
+	ofstream files;
+
 	//Очищаем данные в файле bufferRead
-	string filename = "Buffer\\bufferRead.txt";
+	string filename = "Buffer\\bufferReadDay.txt";
 
 	if (remove(filename.c_str()) == 0)
 	{
@@ -197,10 +199,8 @@ void ListForTheDay(int number)
 
 		if (document2.fileNumDay == u)
 		{
-			ofstream files;
-
 			// записываем даные из структуры Date2 в файл bufferRaed по порядку
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadDay.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -229,7 +229,7 @@ void ListForTheDay(int number)
 		cout << " Отображение записей за день." << endl;
 		cout << " Отображен список за "  << u << "-е число" << endl;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadDay.txt");
 
 		while (!files.eof())
 		{
@@ -271,6 +271,8 @@ void ListForTheMonth(int number)
 	string buffer;
 	Data2 document2;
 
+	ofstream files;
+
 	//Очищаем данные в файле bufferRead
 	string filename = "Buffer\\bufferRead.txt";
 
@@ -309,11 +311,9 @@ void ListForTheMonth(int number)
 
 
 		if (document2.fileNumMonth == u)
-		{
-			ofstream files;
-
+		{	
 			// записываем даные из структуры Date2 в файл bufferRaed по порядку
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadMonth.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -342,7 +342,7 @@ void ListForTheMonth(int number)
 		cout << " Отображение записей за месяц." << endl;
 		cout << " Отображен список за " << u << "-ый месяц" << endl;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadMonth.txt");
 
 		while (!files.eof())
 		{

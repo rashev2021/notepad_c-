@@ -11,6 +11,7 @@ string bufferS;
 int l = 0;
 
 Data3 document3;
+ofstream files;
 
 void SearchList(int number, Data2  document2)
 {
@@ -21,6 +22,23 @@ void SearchList(int number, Data2  document2)
 	cout << " 3. Найти запись по описанию     - нажмите [3]" << endl;
 	cout << " 4. Найти запись по дате         - нажмите [4]" << endl;
 	cout << " 5. Вернуться в меню             - нажмите [5]" << endl;
+
+	string filename = "Buffer\\bufferReadName.txt";
+
+	if (remove(filename.c_str()) == 0)
+	{
+		cout << endl << " Обновление списка. Пожалуйста подождите ";
+
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " ." << endl;
+		system("cls");
+	}
 
 	int next = 0;
 	bool temp = false;
@@ -66,13 +84,30 @@ void SearchList(int number, Data2  document2)
 
 void SearchListName(int number, int next, bool temp, Data2 document2)
 {
+
+	if (number == 0)
+	{
+		cout << endl << " Нет записей для поиска" << endl;
+
+		Sleep(1000);
+		cout << " Сейчас вы будете перенаправлены в меню";
+
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " ." << endl;
+		system("cls");
+		Menu();
+	}
+
 	cout << " Список записей по названию." << endl;
 	cout << " Введите название записи: ";
 	cin.get();
 	gets_s(document3.nameBufS, 150);
-
-	string a;
-	string b;
 
 	int count = 1;
 
@@ -90,13 +125,9 @@ void SearchListName(int number, int next, bool temp, Data2 document2)
 		filesWriteListNumber >> document2.fileNumDay;
 		filesWriteListNumber >> document2.fileNumMonth;
 
-		a = document3.nameBufS;
-		b = document2.nameBuf;
-
-		if (a == b)
+		if (strcmp(document2.nameBuf, document3.nameBufS) == 0)
 		{
-			ofstream files;
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadName.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -121,8 +152,11 @@ void SearchListName(int number, int next, bool temp, Data2 document2)
 	if (temp == true)
 	{
 		next = 0;
+		
+		system("cls");
+		cout << " Выведен список записей по названию: " << document3.nameBufS << endl;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadName.txt");
 
 		while (!files.eof())
 		{
@@ -137,10 +171,9 @@ void SearchListName(int number, int next, bool temp, Data2 document2)
 
 	if (next == 1)
 	{
-		cout << " Нет записей под этим приоритетом." << endl;
+		cout << " Нет записей под названием: " << document3.nameBufS << endl;
 		ReturnMenu();
 	}
-
 	
 }
 

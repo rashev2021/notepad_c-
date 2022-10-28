@@ -19,7 +19,7 @@ void DeleteRedactorList(int number)
 	Data2 document2;
 
 	cout << " ” вас имеетс€ " << number << " записи." << endl << endl;
-	cout << " ¬ведите номер записи которую хотите удалить. " << endl;
+	cout << " ¬ведите номер записи которую хотите удалить или изменить. " << endl;
 
 	do
 	{
@@ -55,7 +55,6 @@ void DeleteRedactorList(int number)
 
 		else
 		{
-
 			ifstream filesListNumber(L"Buffer\\bufferDelete.txt");
 
 			while (!filesListNumber.eof())

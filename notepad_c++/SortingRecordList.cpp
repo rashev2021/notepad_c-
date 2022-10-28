@@ -15,7 +15,7 @@ Data2 document2;
 void SortingRecordList(int number)
 {
 
-	string filename = "Buffer\\bufferRead.txt";
+	string filename = "Buffer\\bufferReadSorting.txt";
 
 	char c;
 	int next = 0;
@@ -112,7 +112,7 @@ void SortingHigh(int number, int next, bool temp)
 		if (document2.fileNumPr == 1)
 		{
 			ofstream files;
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadSorting.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -138,7 +138,7 @@ void SortingHigh(int number, int next, bool temp)
 	{
 		next = 0;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadSorting.txt");
 
 		while (!files.eof())
 		{
@@ -180,7 +180,7 @@ void SortingAvarage(int number, int next, bool temp)
 		if (document2.fileNumPr == 2)
 		{
 			ofstream files;
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadSorting.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -206,7 +206,7 @@ void SortingAvarage(int number, int next, bool temp)
 	{
 		next = 0;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadSorting.txt");
 
 		while (!files.eof())
 		{
@@ -248,7 +248,7 @@ void SortingLow(int number, int next, bool temp)
 		if (document2.fileNumPr == 3)
 		{
 			ofstream files;
-			files.open(L"Buffer\\bufferRead.txt", ios::app);
+			files.open(L"Buffer\\bufferReadSorting.txt", ios::app);
 			files << endl;
 			files << " Запись номер: " << document2.contBuf << endl;
 			files << " Название:     " << document2.nameBuf << endl;
@@ -274,7 +274,7 @@ void SortingLow(int number, int next, bool temp)
 	{
 		next = 0;
 
-		ifstream files(L"Buffer\\bufferRead.txt");
+		ifstream files(L"Buffer\\bufferReadSorting.txt");
 
 		while (!files.eof())
 		{

@@ -415,7 +415,7 @@ void SearchListData(int number, int next, bool temp, Data2 document2)
 	}
 
 	cout << " Список записей по дате." << endl;
-	cout << " Введите дату создания записи: ";
+	cout << " Введите дату создания записи(28.10.2022 / 16:6:36): ";
 	cin.get();
 	gets_s(document3.dateBufS, 150);
 

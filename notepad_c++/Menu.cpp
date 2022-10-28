@@ -183,6 +183,6 @@ void Menu()
 			continue;
 		}
 
-	} while (true);
+	} while (enter == '7');
 }
 

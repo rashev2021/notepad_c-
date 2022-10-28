@@ -11,7 +11,7 @@ string bufferS;
 int l = 0;
 
 Data3 document3;
-ofstream files;
+
 
 void SearchList(int number, Data2  document2)
 {
@@ -60,7 +60,7 @@ void SearchList(int number, Data2  document2)
 			break;
 		case '2':
 			system("cls");
-			SearchListPriority(number, next, temp);
+			SearchListPriority(number, next, temp, document2);
 			break;
 		case '3':
 			system("cls");
@@ -110,6 +110,16 @@ void SearchListName(int number, int next, bool temp, Data2 document2)
 	gets_s(document3.nameBufS, 150);
 
 	int count = 1;
+	char* tempi;
+
+	ofstream files;
+
+	//Замена пробелов в структуре на '_'
+	while (tempi = strchr(document3.nameBufS, ' '))
+	{
+		*tempi = '_';
+		strcpy_s(document3.nameBufS + (strlen(document3.nameBufS) - strlen(tempi)), strlen(document3.nameBufS), tempi);
+	}
 
 	for (int j = 1; j <= number; j++)
 	{
@@ -171,17 +181,111 @@ void SearchListName(int number, int next, bool temp, Data2 document2)
 
 	if (next == 1)
 	{
-		cout << " Нет записей под названием: " << document3.nameBufS << endl;
+		cout << endl << " Нет записей под названием: " << document3.nameBufS << endl;
+		cout << " Либо название введено не верно или не полностью" << endl;
 		ReturnMenu();
 	}
 	
 }
 
-void SearchListPriority(int number, int next, bool temp)
+void SearchListPriority(int number, int next, bool temp, Data2 document2)
 {
-	cout << " Список записей по приоритету." << endl;
 
-	ReturnMenu();
+	if (number == 0)
+	{
+		cout << endl << " Нет записей для поиска" << endl;
+
+		Sleep(1000);
+		cout << " Сейчас вы будете перенаправлены в меню";
+
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " ." << endl;
+		system("cls");
+		Menu();
+	}
+
+	cout << " Список записей по приоритету." << endl;
+	cout << " Введите приоритет записи (Высокий, Средний, Низкий): ";
+	cin.get();
+	gets_s(document3.prioritetBufS, 150);
+
+	int count = 1;
+
+	ofstream files;
+
+	for (int j = 1; j <= number; j++)
+	{
+		bufferS = to_string(count);
+
+		ifstream filesWriteListNumber(bufferS + ".txt");
+		filesWriteListNumber >> document2.contBuf;
+		filesWriteListNumber >> document2.nameBuf;
+		filesWriteListNumber >> document2.descriptionBuf;
+		filesWriteListNumber >> document2.prioritetBuf;
+		filesWriteListNumber >> document2.dateBuf;
+		filesWriteListNumber >> document2.fileNumPr;
+		filesWriteListNumber >> document2.fileNumDay;
+		filesWriteListNumber >> document2.fileNumMonth;
+
+		if (strcmp(document2.prioritetBuf, document3.prioritetBufS) == 0)
+		{
+			files.open(L"Buffer\\bufferReadPriority.txt", ios::app);
+			files << endl;
+			files << " Запись номер: " << document2.contBuf << endl;
+			files << " Название:     " << document2.nameBuf << endl;
+			files << " Описание:     " << document2.descriptionBuf << endl;
+			files << " Приоритет:    " << document2.prioritetBuf << endl;
+			files << " Дата:         " << document2.dateBuf << endl;
+			files << " ________________ " << endl;
+			files.close();
+
+			count++;
+			temp = true;
+		}
+
+		else
+		{
+			count++;
+			next = 1;
+		}
+
+	}
+
+	if (temp == true)
+	{
+		next = 0;
+
+		system("cls");
+		cout << " Выведен список записей по приоритету: " << document3.prioritetBufS << endl;
+	
+
+		ifstream files(L"Buffer\\bufferReadPriority.txt");
+
+
+		while (!files.eof())
+		{
+			files.getline(buffS[l], sizeof(buffS));
+			cout << buffS[l] << endl;
+			++l;
+		}
+
+		files.close();
+		ReturnMenu();
+	}
+
+	if (next == 1)
+	{
+		cout << endl << " Нет записей под приоритетом: " << document3.prioritetBufS << endl;
+		cout << " Либо приоритет введен не верно." << endl;
+		ReturnMenu();
+	}
+
 }
 
 void SearchListDescription(int number, int next, bool temp)

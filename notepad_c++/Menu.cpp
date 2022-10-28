@@ -21,7 +21,6 @@ void Menu()
 	char enter;
 	int number = 0;
 	int numb = 0;
-	string w = "0";
 
 	Data2 document2;
 
@@ -35,12 +34,6 @@ void Menu()
 	ifstream filesNumber(L"Number\\number.txt");
 	// Записываем данные файла в переменную number
 	filesNumber >> number;
-
-	////Создаем файл
-	//ofstream filesNumber;
-	//filesNumber.open(L"Buffer\\bufferRead.txt", ios::out);
-	//filesNumber >> w;
-	//filesNumber.close();
 
 	do
 	{
@@ -113,8 +106,9 @@ void Menu()
 			string filename = "Buffer\\bufferWrite.txt";
 			string filename1 = "Buffer\\bufferRead.txt";
 			string filename2 = "Buffer\\bufferReadName.txt";
-			string filename3 = "Buffer\\bufferReadSorting.txt";
-			string filename4 = "Buffer\\bufferReadDelete.txt";
+			string filename3 = "Buffer\\bufferReadPriority.txt";
+			string filename4 = "Buffer\\bufferReadSorting.txt";
+			string filename5 = "Buffer\\bufferReadDelete.txt";
 			string filesNum = "Number\\number.txt";
 			string del;
 
@@ -131,7 +125,7 @@ void Menu()
 
 			if (remove(filename.c_str()) == 0 && remove(filename1.c_str()) == 0 
 				&& remove(filename2.c_str()) == 0 && remove(filename3.c_str()) == 0  
-				&& remove(filename4.c_str()) == 0)
+				&& remove(filename4.c_str()) == 0 && remove(filename5.c_str()) == 0)
 			{
 					cout << " Идет очистка списка, пожалуйста подождите ";
 					Sleep(700);

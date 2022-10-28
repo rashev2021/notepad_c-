@@ -11,9 +11,6 @@ using namespace std;
 
 void ReadRecordList(int number)
 {
-
-	static char buff[1024][1024];
-	int i = 0;
 	int count = 1;
 	string buffer;
 	Data2 document2;
@@ -23,7 +20,8 @@ void ReadRecordList(int number)
 
 	if (remove(filename.c_str()) == 0)
 	{
-		cout << endl << " Обновление списка ";
+		cout << " Отобразить список. " << endl;
+		cout << " Загрузка меню ";
 
 		Sleep(700);
 		cout << " .";
@@ -65,7 +63,114 @@ void ReadRecordList(int number)
 		count++;
 	}
 
-	cout << " Весь список: " << endl;
+	MenuList(number);
+	
+}
+
+void MenuList(int number)
+{
+	cout << " Отобразить список. " << endl;
+	cout << endl;
+	cout << " Отобразить весь список        - нажмите [1]" << endl;
+	cout << " Отобразить список на день     - нажмите [2]" << endl;
+	cout << " Отобразить список на неделю   - нажмите [3]" << endl;
+	cout << " Отобразить список на месяц    - нажмите [4]" << endl;
+	cout << " Вернуться в меню              - нажмите [5]" << endl;
+
+	char p;
+
+	do
+	{
+		cout << endl << " Выберите нужный пункт: ";
+
+		cin >> p;
+
+		switch (p)
+		{
+		case '1':
+			system("cls");
+			ReadRecordListVisible(number);
+			break;
+		case '2':
+			system("cls");
+			ListForTheDay(number);
+			break;
+		case '3':
+			system("cls");
+			ListForTheWeek(number);
+			break;
+		case '4':
+			system("cls");
+			ListForTheMonth(number);
+		case '5':
+			system("cls");
+			Menu();
+		default:
+			cout << endl << " Введены неверные значения. Попробуйте еще раз." << endl;
+			break;
+		}
+
+	} while (true);
+
+}
+
+void ReadRecordListVisible(int number)
+{
+
+	static char buff[1024][1024];
+	int i = 0;
+	int count = 1;
+	string buffer;
+	Data2 document2;
+
+	//Очищаем данные в файле bufferRead
+	string filename = "Buffer\\bufferRead.txt";
+
+	if (remove(filename.c_str()) == 0)
+	{
+			cout << endl << " Обновление списка ";
+
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " .";
+		Sleep(700);
+		cout << " ." << endl;
+		system("cls");
+	}
+
+	for (int j = 1; j <= number; j++)
+	{
+		buffer = to_string(count);
+
+		//считывам текстовые файлы один за одним и записываем их в структуру Date2
+		ifstream filesWriteListNumber(buffer + ".txt");
+		filesWriteListNumber >> document2.contBuf;
+		filesWriteListNumber >> document2.nameBuf;
+		filesWriteListNumber >> document2.descriptionBuf;
+		filesWriteListNumber >> document2.prioritetBuf;
+		filesWriteListNumber >> document2.dateBuf;
+
+
+		// записываем даные из структуры Date2 в файл bufferRaed по порядку
+		ofstream files;
+		files.open(L"Buffer\\bufferRead.txt", ios::app);
+		files << endl;
+		files << " Запись номер: " << document2.contBuf << endl;
+		files << " Название:     " << document2.nameBuf << endl;
+		files << " Описание:     " << document2.descriptionBuf << endl;
+		files << " Приоритет:    " << document2.prioritetBuf << endl;
+		files << " Дата:         " << document2.dateBuf << endl;
+
+		files << " ________________ " << endl;
+		files.close();
+
+		count++;
+	}
+
+	cout << " Отображен весь список: " << endl;
 
 	// считываем файл и выводим на экран
 	ifstream files(L"Buffer\\bufferRead.txt");
@@ -94,56 +199,13 @@ void ReadRecordList(int number)
 		while (!files.eof())
 		{
 			files.getline(buff[i], sizeof(buff));
-			cout << buff[i] << endl;
+				cout << buff[i] << endl;
 			++i;
 		}
 		files.close();
+		ReturnMenu();
 
 	}
-
-	MenuList(number);
-	
-}
-
-void MenuList(int number)
-{
-	cout << endl;
-	cout << " Отобразить список на день         - нажмите [1]" << endl;
-	cout << " Отобразить список на неделю       - нажмите [2]" << endl;
-	cout << " Отобразить список на месяц        - нажмите [3]" << endl;
-	cout << " Вернуться в меню                  - нажмите [4]" << endl;
-
-	char p;
-
-	do
-	{
-		cout << endl << " Выберите нужный пункт: ";
-
-		cin >> p;
-
-		switch (p)
-		{
-		case '1':
-			system("cls");
-			ListForTheDay(number);
-			break;
-		case '2':
-			system("cls");
-			ListForTheWeek(number);
-			break;
-		case '3':
-			system("cls");
-			ListForTheMonth(number);
-		case '4':
-			system("cls");
-			Menu();
-		default:
-			cout << endl << " Введены неверные значения. Попробуйте еще раз." << endl;
-			break;
-		}
-
-	} while (true);
-
 }
 
 void ListForTheDay(int number)

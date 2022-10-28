@@ -44,6 +44,7 @@ void NewList(int number, Data1 document);
 void PreviewRecordList();
 void ReturnMenu();
 void ReadRecordList(int number);
+void ReadRecordListVisible(int number);
 void MenuList(int number);
 void ListForTheDay(int number);
 void ListForTheWeek(int number);
@@ -57,7 +58,7 @@ void RedactorList(int del);
 void RedactorListEnd(int number, Data1 document);
 void SearchList(int number, Data2 document2);
 void SearchListName(int number, int next, bool temp, Data2 document2);
-void SearchListPriority(int number, int next, bool temp);
+void SearchListPriority(int number, int next, bool temp, Data2 document2);
 void SearchListDescription(int number, int next, bool temp);
 void SearchListData(int number, int next, bool temp);
 

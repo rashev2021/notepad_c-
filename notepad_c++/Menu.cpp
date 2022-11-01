@@ -109,7 +109,6 @@ void Menu()
 			string filename3 = "Buffer\\bufferReadPriority.txt";
 			string filename4 = "Buffer\\bufferReadSorting.txt";
 			string filename5 = "Buffer\\bufferReadDelete.txt";
-			string filesNum = "Number\\number.txt";
 			string del;
 
 

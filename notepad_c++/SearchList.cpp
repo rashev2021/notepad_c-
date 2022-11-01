@@ -421,6 +421,8 @@ void SearchListData(int number, int next, bool temp, Data2 document2)
 
 	int count = 1;
 	char* tempi;
+	
+
 
 	ofstream files;
 
@@ -444,6 +446,7 @@ void SearchListData(int number, int next, bool temp, Data2 document2)
 		filesWriteListNumber >> document2.fileNumPr;
 		filesWriteListNumber >> document2.fileNumDay;
 		filesWriteListNumber >> document2.fileNumMonth;
+
 
 		if (strcmp(document2.dateBuf, document3.dateBufS) == 0)
 		{

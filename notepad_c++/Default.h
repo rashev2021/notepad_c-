@@ -7,6 +7,7 @@ struct Data1
 	int priority = 0;
 	int day = 0;
 	int month = 0;
+	int year = 0;
 	char* prioritet{};
 };
 
@@ -21,7 +22,6 @@ struct Data2
 	int fileNumPr = 0;
 	int fileNumDay = 0;
 	int fileNumMonth = 0;
-	
 };
 
 struct Data3

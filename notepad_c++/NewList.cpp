@@ -24,6 +24,7 @@ void NewList(int number, Data1 document)
 
 	document.day = time.wDay;
 	document.month = time.wMonth;
+	document.year = time.wYear;
 
 	// Запись номера записи в number.txt
 	ofstream filesNumber;
@@ -60,6 +61,7 @@ void NewList(int number, Data1 document)
 	filesWriteListNumber << document.priority << endl;
 	filesWriteListNumber << document.day << endl;
 	filesWriteListNumber << document.month << endl;
+	filesWriteListNumber << document.year << endl;
 	filesWriteListNumber << endl;
 	filesWriteListNumber.close();
 
